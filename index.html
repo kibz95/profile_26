@@ -1,0 +1,1401 @@
+<!DOCTYPE html>
+<html lang="ko" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kibin Kim | Global Business Developer & Business Builder</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'Noto Sans KR', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            400: '#38bdf8',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            950: '#070a13',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            font-family: 'Inter', 'Noto Sans KR', sans-serif;
+            background-color: #070a13;
+        }
+        /* Premium glowing cards for tech-business showcase */
+        .glow-card {
+            box-shadow: 0 0 20px rgba(56, 189, 248, 0.03);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .glow-card:hover {
+            box-shadow: 0 0 30px rgba(56, 189, 248, 0.15);
+            border-color: rgba(56, 189, 248, 0.5);
+            transform: translateY(-6px);
+        }
+        .text-glow {
+            text-shadow: 0 0 10px rgba(56, 189, 248, 0.5);
+        }
+        .text-glow-orange {
+            text-shadow: 0 0 10px rgba(234, 88, 12, 0.5);
+        }
+        /* Custom scrollbar to match the high-end dark theme */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #070a13;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1e293b;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #38bdf8;
+        }
+
+        /* Multilingual toggle styles: seamlessly hides non-active language */
+        body.lang-ko .lang-en { display: none !important; }
+        body.lang-en .lang-ko { display: none !important; }
+
+        /* Dynamic Ken Burns Animations (Scale added to prevent vacant edges) */
+        @keyframes kb-pan-left { 0% { transform: scale(1.15) translateX(4%); } 100% { transform: scale(1.15) translateX(-4%); } }
+        @keyframes kb-pan-right { 0% { transform: scale(1.15) translateX(-4%); } 100% { transform: scale(1.15) translateX(4%); } }
+        @keyframes kb-zoom-in { 0% { transform: scale(1.05); } 100% { transform: scale(1.25); } }
+        @keyframes kb-zoom-out { 0% { transform: scale(1.25); } 100% { transform: scale(1.05); } }
+
+        .kb-anim-0 { animation: kb-pan-right 7s ease-in-out infinite alternate; }
+        .kb-anim-1 { animation: kb-zoom-in 7s ease-in-out infinite alternate; }
+        .kb-anim-2 { animation: kb-pan-left 7s ease-in-out infinite alternate; }
+        .kb-anim-3 { animation: kb-zoom-out 7s ease-in-out infinite alternate; }
+    </style>
+
+    <script>
+        // Image loading error handler
+        function handleImageError(image, textPlaceholder) {
+            image.onerror = null;
+            const width = image.parentElement.clientWidth || 300;
+            const height = image.parentElement.clientHeight || 220;
+            const encodedText = encodeURIComponent(textPlaceholder);
+            image.src = `https://placehold.co/${width}x${height}/1e293b/38bdf8?text=${encodedText}`;
+        }
+    </script>
+</head>
+<body class="lang-ko text-slate-100 overflow-x-hidden">
+
+    <nav class="fixed top-0 left-0 w-full z-50 bg-brand-950/80 backdrop-blur-md border-b border-slate-800/80 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <div class="flex items-center gap-3">
+                    <span class="text-xl font-extrabold tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-sky-400 to-indigo-400">
+                        <span class="lang-ko">김기빈</span>
+                        <span class="lang-en">KIBIN KIM</span>
+                    </span>
+                    <span class="hidden sm:inline-block px-2.5 py-0.5 rounded-full text-xs font-semibold bg-sky-500/10 text-sky-400 border border-sky-500/20">
+                        <span class="lang-ko">글로벌 BD 스페셜리스트</span>
+                        <span class="lang-en">Global BD Specialist</span>
+                    </span>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#about" class="text-sm font-medium text-slate-300 hover:text-sky-400 transition-colors">
+                        <span class="lang-ko">소개</span><span class="lang-en">About</span>
+                    </a>
+                    <a href="#metrics" class="text-sm font-medium text-slate-300 hover:text-sky-400 transition-colors">
+                        <span class="lang-ko">핵심성과</span><span class="lang-en">Achievements</span>
+                    </a>
+                    <a href="#experience" class="text-sm font-medium text-slate-300 hover:text-sky-400 transition-colors">
+                        <span class="lang-ko">경력사항</span><span class="lang-en">Experience</span>
+                    </a>
+                    <a href="#freelance" class="text-sm font-medium text-slate-300 hover:text-sky-400 transition-colors">
+                        <span class="lang-ko">통역/의전</span><span class="lang-en">Interpretation</span>
+                    </a>
+                    <a href="#media-coverage" class="text-sm font-medium text-slate-300 hover:text-sky-400 transition-colors">
+                        <span class="lang-ko">언론보도</span><span class="lang-en">Media</span>
+                    </a>
+                    <a href="#skills" class="text-sm font-medium text-slate-300 hover:text-sky-400 transition-colors">
+                        <span class="lang-ko">보유기술</span><span class="lang-en">Skills</span>
+                    </a>
+                    <a href="#private-mode" class="text-sm font-bold text-orange-400 hover:text-orange-300 transition-colors flex items-center gap-1">
+                        <i class="fa-solid fa-guitar text-xs animate-bounce"></i>
+                        <span class="lang-ko">일상앨범</span><span class="lang-en">My Life</span>
+                    </a>
+
+                    <div class="flex items-center bg-slate-900 border border-slate-800 rounded-full p-1">
+                        <button onclick="setLanguage('ko')" id="btn-ko" class="px-3 py-1 rounded-full text-xs font-bold transition-all bg-sky-500 text-brand-950">KR</button>
+                        <button onclick="setLanguage('en')" id="btn-en" class="px-3 py-1 rounded-full text-xs font-bold transition-all text-slate-400 hover:text-white">EN</button>
+                    </div>
+
+                    <a href="#contact" class="px-5 py-2 rounded-lg text-sm font-semibold bg-sky-500 text-brand-950 hover:bg-sky-400 transition-all shadow-lg shadow-sky-500/10">
+                        <span class="lang-ko">연락하기</span><span class="lang-en">Contact</span>
+                    </a>
+                </div>
+                <div class="flex items-center gap-4 md:hidden">
+                    <div class="flex items-center bg-slate-900 border border-slate-800 rounded-full p-1 text-xs">
+                        <button onclick="setLanguage('ko')" id="btn-ko-mob" class="px-2 py-0.5 rounded-full font-bold transition-all bg-sky-500 text-brand-950">KR</button>
+                        <button onclick="setLanguage('en')" id="btn-en-mob" class="px-2 py-0.5 rounded-full font-bold transition-all text-slate-400 hover:text-white">EN</button>
+                    </div>
+                    <button onclick="toggleMobileMenu()" class="text-slate-300 hover:text-white p-2">
+                        <i class="fa-solid fa-bars text-xl" id="menu-icon"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="hidden md:hidden bg-brand-950 border-b border-slate-800 px-4 py-4 space-y-3" id="mobile-menu">
+            <a href="#about" onclick="toggleMobileMenu()" class="block text-base font-medium text-slate-300 hover:text-sky-400">
+                <span class="lang-ko">소개</span><span class="lang-en">About</span>
+            </a>
+            <a href="#metrics" onclick="toggleMobileMenu()" class="block text-base font-medium text-slate-300 hover:text-sky-400">
+                <span class="lang-ko">핵심성과</span><span class="lang-en">Achievements</span>
+            </a>
+            <a href="#experience" onclick="toggleMobileMenu()" class="block text-base font-medium text-slate-300 hover:text-sky-400">
+                <span class="lang-ko">경력사항</span><span class="lang-en">Experience</span>
+            </a>
+            <a href="#freelance" onclick="toggleMobileMenu()" class="block text-base font-medium text-slate-300 hover:text-sky-400">
+                <span class="lang-ko">통역/의전</span><span class="lang-en">Interpretation</span>
+            </a>
+            <a href="#media-coverage" onclick="toggleMobileMenu()" class="block text-base font-medium text-slate-300 hover:text-sky-400">
+                <span class="lang-ko">언론보도</span><span class="lang-en">Media</span>
+            </a>
+            <a href="#skills" onclick="toggleMobileMenu()" class="block text-base font-medium text-slate-300 hover:text-sky-400">
+                <span class="lang-ko">보유기술</span><span class="lang-en">Skills</span>
+            </a>
+            <a href="#private-mode" onclick="toggleMobileMenu()" class="block text-base font-bold text-orange-400 hover:text-orange-300">
+                <span class="lang-ko">일상앨범 (Private)</span><span class="lang-en">My Life (Private)</span>
+            </a>
+            <a href="#contact" onclick="toggleMobileMenu()" class="block text-center py-2.5 rounded-lg text-base font-semibold bg-sky-500 text-brand-950">
+                <span class="lang-ko">연락하기</span><span class="lang-en">Contact Me</span>
+            </a>
+        </div>
+    </nav>
+
+    <section id="about" class="relative min-h-screen flex items-center pt-28 pb-16 overflow-hidden">
+        <div class="absolute top-1/4 left-1/10 w-96 h-96 bg-sky-500/10 rounded-full blur-3xl -z-10"></div>
+        <div class="absolute bottom-1/4 right-1/10 w-96 h-96 bg-indigo-500/10 rounded-full blur-3xl -z-10"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                <div class="lg:col-span-7 space-y-6">
+                    <div class="inline-flex items-center gap-2 bg-slate-900 border border-slate-800 rounded-full px-4 py-1.5 text-xs sm:text-sm font-semibold text-sky-400">
+                        <span class="flex h-2 w-2 relative">
+                          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-400 opacity-75"></span>
+                          <span class="relative inline-flex rounded-full h-2 w-2 bg-sky-500"></span>
+                        </span>
+                        <span class="lang-ko">Global Business Developer 김기빈</span>
+                        <span class="lang-en">Global Business Developer Kibin Kim</span>
+                    </div>
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight sm:leading-none">
+                        <span class="block text-slate-100">
+                            <span class="lang-ko">Pioneering Markets with</span>
+                            <span class="lang-en">Pioneering Markets with</span>
+                        </span>
+                        <span class="block mt-2 text-transparent bg-clip-text bg-gradient-to-r from-sky-400 via-indigo-400 to-purple-400 text-glow">
+                            <span class="lang-ko">Data & Global Action.</span>
+                            <span class="lang-en">Data & Global Action.</span>
+                        </span>
+                    </h1>
+                    <p class="text-base sm:text-lg text-slate-300 max-w-2xl leading-relaxed">
+                        <span class="lang-ko">안녕하세요! 원어민 수준의 비즈니스 영어(TOEIC 980)와 데이터 기술 분석력(SQL, Tableau)을 무기로, 4대 글로벌 대규모 전시회 부스 운영을 총괄하고 주한미군 VIP 테크 피칭을 성공으로 이끈 글로벌 사업 개발자(BD) 김기빈입니다.</span>
+                        <span class="lang-en">Hello! Armed with native-level business English (TOEIC 980) and robust data analytics skills (SQL, Tableau), I am a Global Business Developer (BD) who has successfully run international tech exhibition booths across 4 major tech exhibitions and secured tech-adoptions with US Army VIPs.</span>
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4 pt-4">
+                        <a href="#experience" class="px-8 py-3.5 rounded-xl font-bold bg-gradient-to-r from-sky-500 to-indigo-600 text-white text-center hover:from-sky-400 hover:to-indigo-500 transition-all shadow-lg shadow-sky-500/20 flex items-center justify-center gap-2">
+                            <span class="lang-ko">프로젝트 성과 보기 <i class="fa-solid fa-arrow-down text-sm"></i></span>
+                            <span class="lang-en">View Projects & Achievements <i class="fa-solid fa-arrow-down text-sm"></i></span>
+                        </a>
+                        <a href="#contact" class="px-8 py-3.5 rounded-xl font-bold bg-slate-900 border border-slate-800 text-slate-200 text-center hover:bg-slate-800 transition-all flex items-center justify-center gap-2">
+                            <span class="lang-ko">네트워킹 연락하기 <i class="fa-solid fa-envelope"></i></span>
+                            <span class="lang-en">Contact Me <i class="fa-solid fa-envelope"></i></span>
+                        </a>
+                    </div>
+                    
+                    <div class="pt-8 border-t border-slate-800/80 grid grid-cols-3 gap-6 text-center sm:text-left">
+                        <div>
+                            <span class="hidden sm:block text-[10px] mb-0.5 h-[15px]" aria-hidden="true">&nbsp;</span>
+                            <span class="block text-3xl font-extrabold text-sky-400">800+</span>
+                            <span class="text-xs text-slate-400 mt-1 block">
+                                <span class="lang-ko">누적 잠재고객 유치</span>
+                                <span class="lang-en">B2B Leads Generated</span>
+                            </span>
+                        </div>
+                        <div>
+                            <span class="text-[10px] text-slate-500 font-semibold block uppercase tracking-wider mb-0.5 h-[15px]">
+                                <span class="lang-ko">2024.11 기준</span><span class="lang-en">As of Nov. 2024</span>
+                            </span>
+                            <span class="block text-3xl font-extrabold text-indigo-400">TOEIC 980</span>
+                            <span class="text-xs text-slate-400 mt-1 block">
+                                <span class="lang-ko">네이티브 수준의 영어 역량</span>
+                                <span class="lang-en">Native English Mastery</span>
+                            </span>
+                        </div>
+                        <div>
+                            <span class="hidden sm:block text-[10px] mb-0.5 h-[15px]" aria-hidden="true">&nbsp;</span>
+                            <span class="block text-3xl font-extrabold text-purple-400">
+                                <span class="lang-ko">4대 전시</span><span class="lang-en">4 Major Expos</span>
+                            </span>
+                            <span class="text-xs text-slate-400 mt-1 block">
+                                <span class="lang-ko">글로벌 대규모 전시 총괄</span>
+                                <span class="lang-en">Global Exhibitions Led</span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="lg:col-span-5 flex justify-center">
+                    <div class="relative group">
+                        <div class="absolute -inset-1.5 bg-gradient-to-r from-sky-500 to-indigo-600 rounded-3xl blur opacity-30 group-hover:opacity-50 transition duration-1000"></div>
+                        <div class="relative w-72 sm:w-80 aspect-[634/1086] bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden shadow-2xl flex flex-col group/img">
+                            <div class="relative flex-grow bg-slate-950 overflow-hidden">
+                                <img id="img-profile" src="profile.jpg" alt="Kibin Kim Profile" onerror="handleImageError(this, 'Kibin Kim')" class="w-full h-full object-cover object-top transition duration-500 group-hover:scale-105">
+                                <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent"></div>
+                                
+                                <div class="absolute bottom-4 left-4 right-4 pointer-events-none">
+                                    <span class="px-2 py-1 rounded bg-sky-500/20 border border-sky-400/40 text-[10px] font-bold text-sky-300 uppercase tracking-widest">Global BD Specialist</span>
+                                    <h3 class="text-lg font-bold text-white mt-1">
+                                        <span class="lang-ko">김기빈 (Kibin Kim)</span>
+                                        <span class="lang-en">Kibin Kim</span>
+                                    </h3>
+                                    <p class="text-xs text-slate-400 flex items-center gap-1.5 mt-1">
+                                        <i class="fa-solid fa-location-dot text-sky-400"></i> 
+                                        <span class="lang-ko">서울시 은평구 녹번동</span>
+                                        <span class="lang-en">Eunpyeong-gu, Seoul, KR</span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="metrics" class="bg-slate-950/40 py-24 border-y border-slate-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-xs font-bold text-sky-400 uppercase tracking-widest">Core Capabilities</h2>
+                <p class="text-3xl font-extrabold text-white mt-2">
+                    <span class="lang-ko">현장 실행력과 실사로 돌파하는 글로벌 세일즈</span>
+                    <span class="lang-en">Global Sales Driven by Hands-On Execution and Field Audits</span>
+                </p>
+                <p class="text-slate-400 mt-4 leading-relaxed">
+                    <span class="lang-ko">단순 마케팅을 넘어, 다각화된 아웃바운드 개척과 치밀한 현장 오딧(Field Audit), 경쟁 분석을 바탕으로 글로벌 스케일의 성과를 도출합니다.</span>
+                    <span class="lang-en">Going beyond passive marketing, I drive global-scale results through diversified outbound pipeline generation, meticulous field auditing, and sharp competitor intelligence.</span>
+                </p>
+                <div class="mt-6">
+                    <span class="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-sky-500/10 border border-sky-500/30 text-sm font-bold text-sky-400 shadow-[0_0_15px_rgba(56,189,248,0.15)] animate-pulse">
+                        <i class="fa-regular fa-hand-pointer"></i>
+                        <span class="lang-ko">카드를 클릭하여 상세 분석을 확인해 보세요</span>
+                        <span class="lang-en">Click a card to see the deep dive</span>
+                    </span>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+                <div onclick="openModal(1)" class="bg-slate-900/60 border border-slate-800/80 rounded-2xl p-8 glow-card flex flex-col justify-between cursor-pointer group">
+                    <div>
+                        <div class="h-12 w-12 rounded-xl bg-sky-500/10 border border-sky-500/20 flex items-center justify-center text-sky-400 text-xl mb-6 group-hover:bg-sky-500/20 transition-all">
+                            <i class="fa-solid fa-funnel-dollar"></i>
+                        </div>
+                        <h3 class="text-lg sm:text-xl font-extrabold text-white tracking-tight mb-2 group-hover:text-sky-400 transition-colors">
+                            Pre-Qualified Outbound Funnel Strategy
+                        </h3>
+                        <p class="text-xs text-sky-400 font-semibold mb-6">
+                            <span class="lang-ko">글로벌 전시회(CES, MWC, GITEX, ATXSG) 기반 아웃바운드 세일즈 파이프라인 개척</span>
+                            <span class="lang-en">Outbound Sales Pipeline Development via Global Tech Exhibitions</span>
+                        </p>
+                    </div>
+                    <div class="pt-4 border-t border-slate-850 flex items-center justify-between text-xs text-sky-400 font-bold group-hover:text-sky-300">
+                        <span>
+                            <span class="lang-ko">분석 및 세부 실행 방식 보기</span>
+                            <span class="lang-en">View Detailed Sourcing Strategy</span>
+                        </span>
+                        <i class="fa-solid fa-arrow-right transition-transform group-hover:translate-x-1.5"></i>
+                    </div>
+                </div>
+
+                <div onclick="openModal(2)" class="bg-slate-900/60 border border-slate-800/80 rounded-2xl p-8 glow-card flex flex-col justify-between cursor-pointer group">
+                    <div>
+                        <div class="h-12 w-12 rounded-xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center text-indigo-400 text-xl mb-6 group-hover:bg-indigo-500/20 transition-all">
+                            <i class="fa-solid fa-clipboard-check"></i>
+                        </div>
+                        <h3 class="text-lg sm:text-xl font-extrabold text-white tracking-tight mb-2 group-hover:text-indigo-400 transition-colors">
+                            Field Audit & Data-Driven "Value Selling"
+                        </h3>
+                        <p class="text-xs text-indigo-400 font-semibold mb-6">
+                            <span class="lang-ko">현장 인프라 실사 기반 대기업(Kenvue, 삼성SDS) PoC 제안 구조화</span>
+                            <span class="lang-en">Enterprise PoC Proposals Built on On-site Infrastructure Auditing</span>
+                        </p>
+                    </div>
+                    <div class="pt-4 border-t border-slate-850 flex items-center justify-between text-xs text-indigo-400 font-bold group-hover:text-indigo-300">
+                        <span>
+                            <span class="lang-ko">실사 내역 및 병목 도출 지표 보기 →</span>
+                            <span class="lang-en">View Auditing Logs & Metrics →</span>
+                        </span>
+                        <i class="fa-solid fa-arrow-right transition-transform group-hover:translate-x-1.5"></i>
+                    </div>
+                </div>
+
+                <div onclick="openModal(3)" class="bg-slate-900/60 border border-slate-800/80 rounded-2xl p-8 glow-card flex flex-col justify-between cursor-pointer group">
+                    <div>
+                        <div class="h-12 w-12 rounded-xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center text-purple-400 text-xl mb-6 group-hover:bg-purple-500/20 transition-all">
+                            <i class="fa-solid fa-shield-halved"></i>
+                        </div>
+                        <h3 class="text-lg sm:text-xl font-extrabold text-white tracking-tight mb-2 group-hover:text-purple-400 transition-colors">
+                            High-Stakes Institutional Pitching & GTM Objection Handling
+                        </h3>
+                        <p class="text-xs text-purple-400 font-semibold mb-6">
+                            <span class="lang-ko">규제 및 대외적 허들을 돌파하는 전략적 GTM 세일즈</span>
+                            <span class="lang-en">Strategic GTM Sales Overcoming Regulatory & Macroeconomic Obstacles</span>
+                        </p>
+                    </div>
+                    <div class="pt-4 border-t border-slate-850 flex items-center justify-between text-xs text-purple-400 font-bold group-hover:text-purple-300">
+                        <span>
+                            <span class="lang-ko">협상 케이스 및 데이터 역제안 보기</span>
+                            <span class="lang-en">View Objection Handling Tactics</span>
+                        </span>
+                        <i class="fa-solid fa-arrow-right transition-transform group-hover:translate-x-1.5"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-12 bg-gradient-to-r from-slate-900 to-indigo-950/40 border border-slate-800/80 rounded-3xl p-6 sm:p-10">
+                <div class="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-6 mb-10 pb-6 border-b border-slate-800/80">
+                    <div>
+                        <span class="px-3 py-1 rounded-full text-xs font-bold bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">Value Selling Performance</span>
+                        <h3 class="text-2xl font-black text-white mt-3 flex items-center gap-2 tracking-tight">
+                            <i class="fa-solid fa-chart-pie text-sky-400"></i> 
+                            <span class="lang-ko">개발 협업 기반의 PoC 시뮬레이션 및 데이터 제안 성과</span>
+                            <span class="lang-en">Developer-Collaborative PoC Simulations & Data Proposals</span>
+                        </h3>
+                        <p class="text-sm text-slate-400 mt-2 max-w-4xl leading-relaxed">
+                            <span class="lang-ko">현장에서 직접 수집한 원천 데이터를 사내 개발팀과 긴밀히 분석·시뮬레이션하여 객관적인 기대 효과(ROI)를 도출하고, 이를 바탕으로 글로벌 임원진 대상의 기술 제안을 논리적으로 지원한 협업의 기록입니다.</span>
+                            <span class="lang-en">A collaborative record of translating on-site raw data into objective simulated ROI metrics alongside internal developers, logically supporting technical proposals for global executives.</span>
+                        </p>
+                    </div>
+                    <div class="flex gap-2 shrink-0">
+                        <span class="px-3.5 py-1.5 bg-slate-950/80 border border-slate-800 rounded-lg text-xs font-bold text-slate-300 font-mono">Data-Driven BD</span>
+                        <span class="px-3.5 py-1.5 bg-slate-950/80 border border-slate-800 rounded-lg text-xs font-bold text-slate-300 font-mono">PoC Verification</span>
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+                    <div class="bg-slate-950/80 p-6 rounded-2xl border border-slate-800/80 text-center flex flex-col justify-between min-h-[170px]">
+                        <div>
+                            <p class="text-xs font-black text-sky-400 uppercase tracking-widest">KENVUE</p>
+                            <span class="text-2xl sm:text-3xl font-black text-white mt-2 block tracking-tight">
+                                <span class="lang-ko">30% 물류 피킹 속도 상승</span><span class="lang-en">30% Increase in Picking Speed</span>
+                            </span>
+                        </div>
+                        <p class="text-xs text-slate-400 mt-4 leading-relaxed border-t border-slate-900 pt-3">
+                            <span class="lang-ko">유통 센터의 <strong>재고 보충(Replenishment) 물류 배치 최적화 및 자동화</strong>로 피킹 속도 상승</span>
+                            <span class="lang-en">Picking speed increased through SCM <strong>replenishment path optimization and automated layout restructuring</strong> at the retail distribution center.</span>
+                        </p>
+                    </div>
+                    
+                    <div class="bg-slate-950/80 p-6 rounded-2xl border border-slate-800/80 text-center flex flex-col justify-between min-h-[170px]">
+                        <div>
+                            <p class="text-xs font-black text-indigo-400 uppercase tracking-widest">SAMSUNG SDS</p>
+                            <span class="text-2xl sm:text-3xl font-black text-white mt-2 block tracking-tight">
+                                <span class="lang-ko">27% 물류 적재 속도 상승</span><span class="lang-en">27% Increase in Loading Speed</span>
+                            </span>
+                        </div>
+                        <p class="text-xs text-slate-400 mt-4 leading-relaxed border-t border-slate-900 pt-3">
+                            <span class="lang-ko"><strong>AI 비전 기반 솔루션</strong>으로 물류 및 위치 수기 스캔 없이 작업 효율 증가</span>
+                            <span class="lang-en">Enhanced loading throughput by utilizing <strong>AI Vision logistics solutions</strong>, completely eliminating manual barcode scanning workflows.</span>
+                        </p>
+                    </div>
+                    
+                    <div class="bg-slate-950/80 p-6 rounded-2xl border border-slate-800/80 text-center flex flex-col justify-between min-h-[170px]">
+                        <div>
+                            <p class="text-xs font-black text-purple-400 uppercase tracking-widest">LX PANTOS</p>
+                            <span class="text-xl sm:text-2xl font-black text-white mt-2 block tracking-tight leading-tight">
+                                <span class="lang-ko">물류 정보 수집 작업<br>5분 ➔ 5초 단축</span><span class="lang-en">5min. ➔ 5sec.<br>Workflow Reduction</span>
+                            </span>
+                        </div>
+                        <p class="text-xs text-slate-400 mt-4 leading-relaxed border-t border-slate-900 pt-3">
+                            <span class="lang-ko"><strong>LiDAR 및 중량 센서 도입</strong>을 통해 물류 중량 및 크기 기록 작업 자동 수집</span>
+                            <span class="lang-en">Automated logistics dimensioning and weight logging workflows through integrated <strong>LiDAR and weight sensor</strong>.</span>
+                        </p>
+                    </div>
+                    
+                    <div class="bg-slate-950/80 p-6 rounded-2xl border border-slate-800/80 text-center flex flex-col justify-between min-h-[170px]">
+                        <div>
+                            <p class="text-xs font-black text-emerald-400 uppercase tracking-widest">
+                                <span class="lang-ko">정부 과제 팁스</span><span class="lang-en">GOV'T TIPS PROJECT</span>
+                            </p>
+                            <span class="text-xl sm:text-2xl font-black text-white mt-2 block tracking-tight leading-tight">
+                                <span class="lang-ko">2025년 팁스 과제<br>최종 선정</span><span class="lang-en">Selected as TIPS<br>Project Finalist</span>
+                            </span>
+                        </div>
+                        <p class="text-xs text-slate-400 mt-4 leading-relaxed border-t border-slate-900 pt-3">
+                            <span class="lang-ko"><strong>내부 팀과 긴밀히 협조</strong>하여 AI 아키텍처 기술 성과를 정량적 비즈니스 데이터로 재편하여 TIPS 과제 최종 합격</span>
+                            <span class="lang-en">Coordinated closely with the R&D team to translate complex AI architecture into quantifiable business metrics, winning the prestigious <strong>TIPS project</strong>.</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="experience" class="py-24">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-4 mb-16">
+                <div>
+                    <h2 class="text-xs font-bold text-sky-400 uppercase tracking-widest">Professional Career</h2>
+                    <p class="text-3xl font-extrabold text-white mt-2">
+                        <span class="lang-ko">상세 경력 및 핵심 프로젝트</span>
+                        <span class="lang-en">Career History & Key Projects</span>
+                    </p>
+                </div>
+                <p class="text-slate-400 max-w-md text-sm">
+                    <span class="lang-ko">와따 에이아이 및 다스버스에서 주도적으로 해결하며 이끌어낸 핵심 실증 레코드입니다.</span>
+                    <span class="lang-en">Proven track record of strategic market exploration and execution at Watta AI and Dasverse.</span>
+                </p>
+            </div>
+
+            <div class="space-y-12">
+                <div class="bg-slate-900/40 border border-slate-800 rounded-2xl p-6 sm:p-10 transition duration-300 hover:border-sky-500/30">
+                    <div class="flex flex-col lg:flex-row lg:items-start justify-between gap-6 pb-6 border-b border-slate-800">
+                        <div class="space-y-1">
+                            <div class="flex items-center gap-3 flex-wrap">
+                                <h3 class="text-2xl font-extrabold text-white">
+                                    <span class="lang-ko">글로벌 비즈니스 매니저 (주임)</span>
+                                    <span class="lang-en">Global Business Manager (Associate)</span>
+                                </h3>
+                                <span class="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-sky-500/10 text-sky-400 border border-sky-500/20">Full-Time</span>
+                            </div>
+                            <p class="text-sky-400 font-bold flex items-center gap-2">
+                                <i class="fa-solid fa-building"></i> 
+                                <span class="lang-ko">(주)와따 에이아이 (AI Vision & 3D 라이다 물류/안전관제 솔루션 전문 스타트업)</span>
+                                <span class="lang-en">Watta AI Inc. (AI Vision & 3D LiDAR Logistics / Safety Control Solutions)</span>
+                            </p>
+                            <p class="text-slate-400 text-xs mt-1">
+                                <span class="lang-ko">2024년 기준 매출액 3.9억 원, 임직원 30명 규모</span>
+                                <span class="lang-en">2024 Revenue: KRW 390M | 30 Employees</span>
+                            </p>
+                        </div>
+                        <div class="text-slate-400 font-mono text-sm lg:text-right">
+                            <span class="block text-white font-bold"><i class="fa-solid fa-calendar-days text-sky-500"></i> 2025.02 - 2026.02</span>
+                            <span class="text-xs">1 Year</span>
+                        </div>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 mt-8">
+                        <div class="lg:col-span-7 space-y-6">
+                            <div>
+                                <h4 class="text-sm font-bold text-sky-400 uppercase tracking-widest mb-3 flex items-center gap-2">
+                                    <i class="fa-solid fa-flag-usa"></i> 
+                                    <span class="lang-ko">해외 사업 개발 및 글로벌 B2B 세일즈 총괄</span>
+                                    <span class="lang-en">Overseas Business Development & Global B2B Sales</span>
+                                </h4>
+                                <ul class="space-y-3.5 text-slate-300 text-sm">
+                                    <li class="flex items-start gap-2">
+                                        <i class="fa-solid fa-circle-check text-sky-400 mt-1 shrink-0"></i>
+                                        <span>
+                                            <strong class="lang-ko">4개국 글로벌 전시 부스 총괄 기획:</strong><strong class="lang-en">Exhibition Directing:</strong>
+                                            <span class="lang-ko">미국 CES, 스페인 MWC, 두바이 GITEX, 싱가포르 ATXSG 현장 총괄 운영 및 아웃바운드 세일즈 진행.</span>
+                                            <span class="lang-en">Successfully directed and managed the corporate booth at 4 major tech exhibitions (CES US, MWC Spain, GITEX Dubai, ATXSG Singapore).</span>
+                                        </span>
+                                    </li>
+                                    <li class="flex items-start gap-2">
+                                        <i class="fa-solid fa-circle-check text-sky-400 mt-1 shrink-0"></i>
+                                        <span>
+                                            <strong class="lang-ko">대형 유통 제조사 파이프라인 개척:</strong><strong class="lang-en">Enterprise Sales:</strong>
+                                            <span class="lang-ko">Walmart, Nestle, FNS 등 미주/글로벌 대형 유통 제조 기업 타겟 다각적 바이어 상담 및 누적 800명 이상의 미팅 세션 진행.</span>
+                                            <span class="lang-en">Conducted technical consultations and B2B pipeline development with retail and shipping giants including Walmart, Nestle, and FNS, securing 800+ leads.</span>
+                                        </span>
+                                    </li>
+                                    <li class="flex items-start gap-2">
+                                        <i class="fa-solid fa-circle-check text-sky-400 mt-1 shrink-0"></i>
+                                        <span>
+                                            <strong class="lang-ko">주한미군 기술 피칭 협상 성공:</strong><strong class="lang-en">US Army Pitching:</strong>
+                                            <span class="lang-ko">캠프 험프리스 미 육군 VIP 대상 원어 피칭을 이끌어 보안성 통과 및 미 육군 뉴스 포털 사이트 내 자사 기술 레퍼런스 공식 등재 유도.</span>
+                                            <span class="lang-en">Delivered tech presentations to US Army VIPs at Camp Humphreys, passing rigid defense security protocols and gaining official publication on the US Army Portal.</span>
+                                        </span>
+                                    </li>
+                                    <li class="flex items-start gap-2">
+                                        <i class="fa-solid fa-circle-check text-sky-400 mt-1 shrink-0"></i>
+                                        <span>
+                                            <strong class="lang-ko">글로벌 기관 영문 RFP 분석 및 수주 제안:</strong><strong class="lang-en">Global RFP & Proposal Sourcing:</strong>
+                                            <span class="lang-ko">THALES, 두바이 경찰청 등의 RFP를 분석해 핵심 페인포인트를 도출. 내부 R&D 팀과 논의하여 기술 규격을 매핑한 후, 바이어 중심의 직관적인 영문 제안서 문서화 작업을 전담 총괄.</span>
+                                            <span class="lang-en">Analyzed complex RFPs from global institutions like THALES and Dubai Police to extract key pain points. Coordinated with internal R&D to map technical specs and directed buyer-centric, intuitive English proposal documentation.</span>
+                                        </span>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div>
+                                <h4 class="text-sm font-bold text-sky-400 uppercase tracking-widest mb-3 flex items-center gap-2">
+                                    <i class="fa-solid fa-database"></i> 
+                                    <span class="lang-ko">국내 사업 및 R&D 개발팀 기술 영업 지원</span>
+                                    <span class="lang-en">Domestic Business & R&D Tech Sales Support</span>
+                                </h4>
+                                <ul class="space-y-3.5 text-slate-300 text-sm">
+                                    <li class="flex items-start gap-2">
+                                        <i class="fa-solid fa-circle-check text-sky-400 mt-1 shrink-0"></i>
+                                        <span>
+                                            <strong class="lang-ko">Kenvue(캔뷰) SCM 물류 데이터 구조화 지원:</strong><strong class="lang-en">Kenvue Logistics Optimization Support:</strong>
+                                            <span class="lang-ko">국내 사업부 및 개발팀과의 협업 하에 글로벌 임원진 대상 쇼룸 시뮬레이션을 지원하여, 유통 센터의 재고 보충(Replenishment) 물류 배치 최적화 및 자동화 기반 '30% 피킹 속도 상승' 유효성을 공동 도출하고 최종 제안서 가치 자산화에 기여.</span>
+                                            <span class="lang-en">Collaborated with domestic business and development teams to support showroom simulations for global executives, co-derived simulated "30% picking speed improvement" through replenishment layout optimization and automated workflow to maximize proposal asset value.</span>
+                                        </span>
+                                    </li>
+                                    <li class="flex items-start gap-2">
+                                        <i class="fa-solid fa-circle-check text-sky-400 mt-1 shrink-0"></i>
+                                        <span>
+                                            <strong class="lang-ko">국내 대기업 현장 PoC 실증 및 검증 지원:</strong><strong class="lang-en">Enterprise PoC Support & Verification:</strong>
+                                            <span class="lang-ko">삼성SDS와 LX판토스의 현장 로우 데이터를 취합하고 사내 R&D 팀과의 협업을 거쳐 시뮬레이션 모델링을 보조. 삼성SDS의 수기 스캔 없는 '27% 물류 적재 속도 상승' 지표와 LX판토스의 LiDAR 및 중량 센서 도입을 통한 '중량·크기 기록 작업 단축(5분➔5초)' 자동 수집 지표 도출에 기여.</span>
+                                            <span class="lang-en">Consolidated field data for Samsung SDS and LX Pantos, collaborating with internal R&D to support simulation modeling. Supported proving "27% simulated loading speedup" without manual scans (Samsung SDS) and automated weight/dimension data capture reducing process time from "5 minutes to 5 seconds" via LiDAR & weight sensors (LX Pantos).</span>
+                                        </span>
+                                    </li>
+                                    <li class="flex items-start gap-2">
+                                        <i class="fa-solid fa-circle-check text-sky-400 mt-1 shrink-0"></i>
+                                        <span>
+                                            <strong class="lang-ko">정부 TIPS 과제 사업성 데이터 구조화 지원:</strong><strong class="lang-en">Government TIPS Grant Proposal Support:</strong>
+                                            <span class="lang-ko">사내 유관 부서와 긴밀히 협조하여 난해한 AI 아키텍처 기술 성과를 시장성 중심의 정량적 비즈니스 데이터로 재편 및 번역함으로써, 수억 원 규모의 '2025 정부 TIPS 과제 최종 선정' 자금 확보 과정에 기여.</span>
+                                            <span class="lang-en">Coordinated closely with internal departments to translate highly complex AI architectures into commercially-viable, market-oriented business data, contributing to winning multi-million KRW government funding through the final selection of the 2025 TIPS project.</span>
+                                        </span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="lg:col-span-5 space-y-4">
+                            <span class="text-xs font-bold text-slate-400 block mb-2"><i class="fa-regular fa-images"></i> 
+                                <span class="lang-ko">와따 에이아이 실증 레코드</span>
+                                <span class="lang-en">Watta AI Field Logs</span>
+                            </span>
+                            <div class="grid grid-cols-2 gap-3">
+                                <script>
+                                    const wattaIds = ['watta_1', 'watta_2', 'watta_3', 'watta_4', 'watta_5', 'watta_6'];
+                                    for(let i=0; i<6; i++) {
+                                        document.write(`
+                                            <div class="relative bg-slate-950 aspect-[4/3] rounded-xl overflow-hidden border border-slate-800/80 transform transition-all duration-300 hover:scale-[1.35] hover:z-50 hover:shadow-2xl origin-center">
+                                                <img src="${wattaIds[i]}.jpg" alt="Evidence Log" onerror="handleImageError(this, '${wattaIds[i]}')" class="w-full h-full object-cover">
+                                            </div>
+                                        `);
+                                    }
+                                </script>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-slate-900/40 border border-slate-800 rounded-2xl p-6 sm:p-10 transition duration-300 hover:border-sky-500/30">
+                    <div class="flex flex-col lg:flex-row lg:items-start justify-between gap-6 pb-6 border-b border-slate-800">
+                        <div class="space-y-1">
+                            <div class="flex items-center gap-3 flex-wrap">
+                                <h3 class="text-2xl font-extrabold text-white">
+                                    <span class="lang-ko">해외영업 매니저 (사원)</span>
+                                    <span class="lang-en">Global Sales Specialist</span>
+                                </h3>
+                                <span class="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-sky-500/10 text-sky-400 border border-sky-500/20">Full-Time</span>
+                            </div>
+                            <p class="text-sky-400 font-bold flex items-center gap-2">
+                                <i class="fa-solid fa-building"></i> 
+                                <span class="lang-ko">(주)다스버스 (디지털 미디어아트 OTT, 메타버스 & 블록체인 융합 서비스 개발사)</span>
+                                <span class="lang-en">Dasverse Inc. (Digital Media Art OTT, Metaverse & Blockchain Fusion Platforms)</span>
+                            </p>
+                            <p class="text-slate-400 text-xs mt-1">
+                                <span class="lang-ko">2023년 기준 매출액 83억 원, 임직원 50명 규모 (구 주식회사 디피어소시에이츠)</span>
+                                <span class="lang-en">2023 Revenue: KRW 8.3B | 50 Employees (formerly DP Associates Inc.)</span>
+                            </p>
+                        </div>
+                        <div class="text-slate-400 font-mono text-sm lg:text-right">
+                            <span class="block text-white font-bold"><i class="fa-solid fa-calendar-days text-sky-500"></i> 2022.01 - 2023.07</span>
+                            <span class="text-xs">1 Year 7 Months</span>
+                        </div>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 mt-8">
+                        <div class="lg:col-span-7 space-y-6">
+                            <div>
+                                <h4 class="text-sm font-bold text-sky-400 uppercase tracking-widest mb-3 flex items-center gap-2">
+                                    <i class="fa-solid fa-landmark"></i> 
+                                    <span class="lang-ko">글로벌 B2G 진출 분석 및 정부 제안</span>
+                                    <span class="lang-en">Global B2G & Gov Relations</span>
+                                </h4>
+                                <ul class="space-y-3.5 text-slate-300 text-sm">
+                                    <li class="flex items-start gap-2">
+                                        <i class="fa-solid fa-circle-check text-sky-400 mt-1 shrink-0"></i>
+                                        <span>
+                                            <strong class="lang-ko">관광 거시 데이터 수치 분석:</strong><strong class="lang-en">Tourism Market Analysis:</strong>
+                                            <span class="lang-ko">해외 타겟 국가(북미, 괌 지자체) 관광 로우 데이터를 분석하여 미디어아트 구축 타당성 검토 및 타진 보고서 수주 설계.</span>
+                                            <span class="lang-en">Analyzed raw regional tourism dataset (North America, Guam municipalities) to design target-market entry proposals and business model validations.</span>
+                                        </span>
+                                    </li>
+                                    <li class="flex items-start gap-2">
+                                        <i class="fa-solid fa-circle-check text-sky-400 mt-1 shrink-0"></i>
+                                        <span>
+                                            <strong class="lang-ko">괌 정부 관공서 토지 수주 LOI 체결:</strong><strong class="lang-en">Guam Land Acquisition LOI:</strong>
+                                            <span class="lang-ko">괌 관광청 의사결정권자 대상 직접적인 프레젠테이션 및 사업 피칭을 주도하여 핵심 전시관 건립을 위한 토지 사용 계약 MOU/LOI 수주 성공.</span>
+                                            <span class="lang-en">Pitched digital art exhibition business proposals directly to Guam Visitors Bureau officials, successfully securing land-use LOI/MOU contract.</span>
+                                        </span>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div>
+                                <h4 class="text-sm font-bold text-sky-400 uppercase tracking-widest mb-3 flex items-center gap-2">
+                                    <i class="fa-solid fa-signature"></i> 
+                                    <span class="lang-ko">탑티어 IP 라이선싱 및 글로벌 조율</span>
+                                    <span class="lang-en">Top-Tier IP Licensing & Risk Management</span>
+                                </h4>
+                                <ul class="space-y-3.5 text-slate-300 text-sm">
+                                    <li class="flex items-start gap-2">
+                                        <i class="fa-solid fa-circle-check text-sky-400 mt-1 shrink-0"></i>
+                                        <span>
+                                            <strong class="lang-ko">메트로폴리탄 미술관(MET) IP 라이선싱 수주:</strong><strong class="lang-en">The Met Museum IP Acquisition:</strong>
+                                            <span class="lang-ko">세계 3대 미술관인 미국 MET 및 유럽의 유수 국공립 문화기관을 발굴하고 명화 디지털 활용 계약 조건 조율 및 수주 완료.</span>
+                                            <span class="lang-en">Successfully sourced and negotiated digital art licensing contracts with world-renowned entities, including the Metropolitan Museum of Art (MET).</span>
+                                        </span>
+                                    </li>
+                                    <li class="flex items-start gap-2">
+                                        <i class="fa-solid fa-circle-check text-sky-400 mt-1 shrink-0"></i>
+                                        <span>
+                                            <strong class="lang-ko">리스크 & 예산 실시간 모니터링:</strong><strong class="lang-en">Contract & Legal Risk QA:</strong>
+                                            <span class="lang-ko">다국적 IP 계약 시 발생할 수 있는 지적 재산권 분쟁 리스크를 관리하고 예산 대비 ROI 검증 시스템 제어.</span>
+                                            <span class="lang-en">Supervised budget boundaries and legal risk guidelines of IP licensing to minimize potential cross-border trademark and royalty conflicts.</span>
+                                        </span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="lg:col-span-5 space-y-4">
+                            <span class="text-xs font-bold text-slate-400 block mb-2"><i class="fa-regular fa-images"></i> 
+                                <span class="lang-ko">다스버스 프로젝트 레코드</span>
+                                <span class="lang-en">Dasverse Project Logs</span>
+                            </span>
+                            <div class="grid grid-cols-2 gap-3">
+                                <script>
+                                    const dasIds = ['das_1', 'das_2', 'das_3', 'das_4'];
+                                    for(let i=0; i<4; i++) {
+                                        document.write(`
+                                            <div class="relative bg-slate-950 aspect-[4/3] rounded-xl overflow-hidden border border-slate-800/80 transform transition-all duration-300 hover:scale-[1.35] hover:z-50 hover:shadow-2xl origin-center">
+                                                <img src="${dasIds[i]}.jpg" alt="Evidence Log" onerror="handleImageError(this, '${dasIds[i]}')" class="w-full h-full object-cover">
+                                            </div>
+                                        `);
+                                    }
+                                </script>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="freelance" class="bg-slate-950/40 py-24 border-y border-slate-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-xs font-bold text-sky-400 uppercase tracking-widest">Global Assets</h2>
+                <p class="text-3xl font-extrabold text-white mt-2">
+                    <span class="lang-ko">영어 소통 및 글로벌 스페셜리스트 자산</span>
+                    <span class="lang-en">Bilingual Interpretation & VIP Protocol History</span>
+                </p>
+                <p class="text-slate-400 mt-4">
+                    <span class="lang-ko">단순 회화 수준을 넘어 국제 콘퍼런스 및 정부 주요 행사의 의전과 다국적 VIP 영어 통역 스태프 활동으로 입증된 정교한 영문 커뮤니케이션 능력을 발휘합니다.</span>
+                    <span class="lang-en">Going beyond conversational English, possessing extensive professional protocol expertise guiding foreign delegates and translating high-profile medical, logistics, and maritime conferences.</span>
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="freelance-grid">
+                </div>
+        </div>
+    </section>
+
+    <section id="media-coverage" class="py-24 bg-gradient-to-b from-slate-950/40 to-brand-950/20 border-b border-slate-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-xs font-bold text-indigo-400 uppercase tracking-widest">Media Coverage</h2>
+                <p class="text-3xl font-extrabold text-white mt-2">
+                    <span class="lang-ko">공식 언론 보도 및 검증 레퍼런스</span>
+                    <span class="lang-en">Official News & Institutional References</span>
+                </p>
+                <p class="text-slate-400 mt-4">
+                    <span class="lang-ko">공식 정부 기관 및 주요 스타트업 언론 미디어 채널에 피처링되어 글로벌 공신력을 입증받은 공신력 자산 기록입니다.</span>
+                    <span class="lang-en">Proven credibility featured across official governmental media and premium global news channels.</span>
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <a href="https://www.army.mil/article/284557/afsbn_korea_leads_ai_warehouse_management_professional_development_for_the_future_army" target="_blank" class="bg-slate-900 border border-slate-800/80 p-6 rounded-2xl hover:border-sky-500/30 transition-all flex flex-col justify-between group">
+                    <div>
+                        <div class="flex justify-between items-start mb-4">
+                            <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/10 text-amber-500 border border-amber-500/20 uppercase tracking-wider font-mono">U.S. ARMY OFFICIAL</span>
+                            <i class="fa-solid fa-arrow-up-right-from-square text-slate-600 group-hover:text-sky-400 text-xs transition-colors"></i>
+                        </div>
+                        <h4 class="text-base font-extrabold text-slate-100 group-hover:text-sky-400 transition-colors leading-snug">
+                            AFSBn-Korea leads AI warehouse management professional development for the future Army
+                        </h4>
+                        <p class="text-xs text-slate-400 mt-3 leading-relaxed">
+                            <span class="lang-ko">주한미군 캠프 험프리스 현장 군사 VIP 대상 AI Vision 물류 관제 기술 피칭 성공 및 솔루션 신뢰성 공식 등재 레퍼런스 확보.</span>
+                            <span class="lang-en">Passed rigid defense security checks and led professional AI warehouse management logic briefing directly embedded with US Army portal references.</span>
+                        </p>
+                    </div>
+                    <span class="text-[11px] text-slate-500 font-mono block border-t border-slate-800 mt-6 pt-3">army.mil (U.S. Department of Defense)</span>
+                </a>
+
+                <a href="https://gulfnews.com/your-money/cryptocurrency/nfts-can-be-rented-3d-and-abstract-art-can-be-turned-into-nfts-gulf-news-event-exhibitors-speak-1.1656250658728" target="_blank" class="bg-slate-900 border border-slate-800/80 p-6 rounded-2xl hover:border-sky-500/30 transition-all flex flex-col justify-between group">
+                    <div>
+                        <div class="flex justify-between items-start mb-4">
+                            <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-sky-500/10 text-sky-400 border border-sky-500/20 uppercase tracking-wider font-mono">GULF NEWS DUBAI</span>
+                            <i class="fa-solid fa-arrow-up-right-from-square text-slate-600 group-hover:text-sky-400 text-xs transition-colors"></i>
+                        </div>
+                        <h4 class="text-base font-extrabold text-slate-100 group-hover:text-sky-400 transition-colors leading-snug">
+                            Introducing NFT rentals to Dubai: Exhibitors Speak at Premium Gulf News Showcase
+                        </h4>
+                        <p class="text-xs text-slate-400 mt-3 leading-relaxed">
+                            <span class="lang-ko">중동 두바이 현지 글로벌 미디어아트 및 NFT 렌탈 비즈니스 모델 론칭 관련 메인 Producer 자격 공식 단독 언론 인터뷰 피처링.</span>
+                            <span class="lang-en">Featured as Lead Business Producer by major UAE news media covering cross-border deployment of digital masterworks and abstract NFT licensing ecosystems in Dubai.</span>
+                        </p>
+                    </div>
+                    <span class="text-[11px] text-slate-500 font-mono block border-t border-slate-800 mt-6 pt-3">gulfnews.com (UAE Premium Media)</span>
+                </a>
+
+                <a href="https://startuprecipe.co.kr/archives/5748132" target="_blank" class="bg-slate-900 border border-slate-800/80 p-6 rounded-2xl hover:border-sky-500/30 transition-all flex flex-col justify-between group">
+                    <div>
+                        <div class="flex justify-between items-start mb-4">
+                            <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 uppercase tracking-wider font-mono">STARTUP RECIPE</span>
+                            <i class="fa-solid fa-arrow-up-right-from-square text-slate-600 group-hover:text-sky-400 text-xs transition-colors"></i>
+                        </div>
+                        <h4 class="text-base font-extrabold text-slate-100 group-hover:text-sky-400 transition-colors leading-snug">
+                            2025 경기창업공모 'G-스타 오디션' 결선, 테크 스타트업 글로벌 IR 챌린지 성황리 폐막
+                        </h4>
+                        <p class="text-xs text-slate-400 mt-3 leading-relaxed">
+                            <span class="lang-ko">비즈니스 모델의 재무적 지속 가능성과 핵심 AI 기술 로직을 영어로 전담 발표하여 최종 결선 진출 및 공인 장려상 수상 기여.</span>
+                            <span class="lang-en">Delivered high-impact English pitch detailing financial scalability metrics, winning a final accolade at the global startup summit.</span>
+                        </p>
+                    </div>
+                    <span class="text-[11px] text-slate-500 font-mono block border-t border-slate-800 mt-6 pt-3">startuprecipe.co.kr (Tech Media)</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" class="py-24">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+                <div class="lg:col-span-7 space-y-8">
+                    <div>
+                        <h3 class="text-2xl font-extrabold text-white">
+                            <span class="lang-ko">기술 스택 및 보유 역량</span>
+                            <span class="lang-en">Skillsets & Tools</span>
+                        </h3>
+                    </div>
+
+                    <div class="space-y-6">
+                        <div>
+                            <span class="text-xs font-bold text-sky-400 uppercase tracking-widest block mb-2">Language</span>
+                            <div class="flex items-center gap-2 flex-wrap">
+                                <span class="px-3.5 py-1.5 rounded-lg bg-slate-900 border border-slate-800 text-sm text-slate-200">
+                                    <span class="lang-ko">영어 (TOEIC 980 - Native 비즈니스 완벽 소통)</span>
+                                    <span class="lang-en">English (TOEIC 980 - Native-level Negotiation)</span>
+                                </span>
+                                <span class="px-3.5 py-1.5 rounded-lg bg-slate-900 border border-slate-800 text-sm text-slate-200">Korean (Native)</span>
+                            </div>
+                        </div>
+
+                        <div>
+                            <span class="text-xs font-bold text-sky-400 uppercase tracking-widest block mb-2">Data & Analytics</span>
+                            <div class="flex items-center gap-2 flex-wrap">
+                                <span class="px-3.5 py-1.5 rounded-lg bg-slate-900 border border-slate-800 text-sm text-slate-200">SQL</span>
+                                <span class="px-3.5 py-1.5 rounded-lg bg-slate-900 border border-slate-800 text-sm text-slate-200">Tableau (Data Visualization Certification)</span>
+                                <span class="px-3.5 py-1.5 rounded-lg bg-slate-900 border border-slate-800 text-sm text-slate-200">Power BI</span>
+                            </div>
+                        </div>
+
+                        <div>
+                            <span class="text-xs font-bold text-indigo-400 uppercase tracking-widest block mb-2">Generative AI & Productivity</span>
+                            <div class="flex items-center gap-2 flex-wrap">
+                                <span class="px-3.5 py-1.5 rounded-lg bg-slate-900 border border-slate-800 text-sm text-slate-200">Gemini Pro</span>
+                                <span class="px-3.5 py-1.5 rounded-lg bg-slate-900 border border-slate-800 text-sm text-slate-200">NotebookLM</span>
+                                <span class="px-3.5 py-1.5 rounded-lg bg-slate-900 border border-slate-800 text-sm text-slate-200">MS Office (PowerPoint, Word, Excel)</span>
+                            </div>
+                        </div>
+
+                        <div>
+                            <span class="text-xs font-bold text-purple-400 uppercase tracking-widest block mb-2">Design & Media production</span>
+                            <div class="flex items-center gap-2 flex-wrap">
+                                <span class="px-3.5 py-1.5 rounded-lg bg-slate-900 border border-slate-800 text-sm text-slate-200">Adobe Photoshop</span>
+                                <span class="px-3.5 py-1.5 rounded-lg bg-slate-900 border border-slate-800 text-sm text-slate-200">Premiere Pro</span>
+                                <span class="px-3.5 py-1.5 rounded-lg bg-slate-900 border border-slate-800 text-sm text-slate-200">After Effects</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-5 space-y-8">
+                    <div>
+                        <h3 class="text-2xl font-extrabold text-white">
+                            <span class="lang-ko">학력 및 교육 이수 현황</span>
+                            <span class="lang-en">Education & Training</span>
+                        </h3>
+                    </div>
+
+                    <div class="space-y-6">
+                        <div class="space-y-4">
+                            <div class="p-5 bg-slate-900/60 border border-slate-800 rounded-xl">
+                                <span class="text-xs text-sky-400 font-mono">2016.03 - 2022.02</span>
+                                <h4 class="text-base font-bold text-white mt-1">
+                                    <span class="lang-ko">부산외국어대학교</span><span class="lang-en">Busan University of Foreign Studies</span>
+                                </h4>
+                                <p class="text-sm text-slate-300">
+                                    <span class="lang-ko">영어학과 학사 졸업 (평점: 3.7 / 4.5)</span>
+                                    <span class="lang-en">B.A. in English (GPA: 3.7 / 4.5)</span>
+                                </p>
+                            </div>
+
+                            <div class="p-5 bg-slate-900/60 border border-slate-800 rounded-xl">
+                                <span class="text-xs text-sky-400 font-mono">2012.03 - 2015.03</span>
+                                <h4 class="text-base font-bold text-white mt-1">
+                                    <span class="lang-ko">부산국제고등학교</span><span class="lang-en">Busan International High School</span>
+                                </h4>
+                                <p class="text-sm text-slate-300">
+                                    <span class="lang-ko">인문계열 졸업</span><span class="lang-en">Humanities Division, Graduated</span>
+                                </p>
+                            </div>
+                        </div>
+
+                        <div>
+                            <span class="text-xs font-bold text-slate-400 uppercase tracking-widest block mb-2">
+                                <span class="lang-ko">기타 자격 및 이수증</span><span class="lang-en">Other Certifications</span>
+                            </span>
+                            <ul class="space-y-2 text-sm text-slate-300">
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-angle-right text-sky-500"></i> 
+                                    <span class="lang-ko">SQL 활용 데이터 추출 분석 기법 과정 수료</span>
+                                    <span class="lang-en">SQL-based Data Extraction and Analytics Certification</span>
+                                </li>
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-angle-right text-sky-500"></i> 
+                                    <span class="lang-ko">Tableau 데이터 시각화 활용 고급 차트 과정 수료</span>
+                                    <span class="lang-en">Advanced Tableau Data Visualization & Dashboard Mapping</span>
+                                </li>
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-angle-right text-sky-500"></i> 
+                                    <span class="lang-ko">2종 보통 운전면허 취득 (바이어 에스코트 및 의전 가능)</span>
+                                    <span class="lang-en">Driving License Type-2 Regular (Capable of VIP escort duties)</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="min-h-screen bg-black text-stone-100 py-24 px-6 md:px-16 border-t border-stone-900" id="private-mode">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-start relative">
+            
+            <div class="lg:col-span-5 lg:sticky lg:top-28 space-y-8">
+                <div class="inline-flex items-center gap-2 bg-orange-600/10 text-orange-500 border border-orange-600/30 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">
+                    <i class="fa-solid fa-circle-user animate-pulse"></i> Private Mode
+                </div>
+                
+                <h2 class="text-3xl md:text-4xl font-extrabold tracking-tight leading-tight">
+                    <span class="lang-ko">어제보다 더 나은 나를 만들어가는, <br><span class="text-orange-500 text-glow-orange">김기빈</span>입니다.</span>
+                    <span class="lang-en">Driven by Growth and Breaking Limits, <br>I'm <span class="text-orange-500 text-glow-orange">Kibin Kim</span>.</span>
+                </h2>
+                
+                <div class="text-stone-400 text-sm md:text-base leading-relaxed space-y-5 font-normal">
+                    <p>
+                        <span class="lang-ko">안녕하세요! 저는 일과 삶 모두에서 '멈추지 않는 성장'을 가장 중요한 가치로 믿습니다. 음악, 사진, 사이클링, 골프는 저에게 단순한 휴식을 넘어, 매일 조금씩 나의 한계를 넓혀가는 또 다른 도전의 무대입니다.</span>
+                        <span class="lang-en">Hello! I believe continuous personal growth is the ultimate value in both life and career. For me, music, photography, cycling, and golf are more than just relaxation—they are fields where I constantly expand my limits.</span>
+                    </p>
+                    <p>
+                        <span class="lang-ko">특히 <span class="text-orange-400 font-semibold">15년이 넘는 시간 동안 잡아온 통기타</span>는 제 몰입과 성장의 역사를 그대로 담고 있습니다. 학창 시절부터 군대, 대학교, 그리고 직장에 이르기까지 늘 새로운 무대를 기획하며 주도적으로 나를 성장시켜 왔고, 최근에는 한강 서울함 공원 버스킹을 성공시키며 한 단계를 더 뛰어넘었습니다. 하나의 악기를 15년간 깊이 있게 파고든 끈기는, 필드 위에서 타점과 매너를 다듬는 골프나 한계를 향해 페달을 밟는 사이클링에서도 늘 나 자신을 한 뼘 더 자라나게 만드는 원동력이 됩니다.</span>
+                        <span class="lang-en">In particular, <span class="text-orange-400 font-semibold">playing the acoustic guitar for over 15 years</span> mirrors my journey of dedication and self-improvement. From my student days and military service to my professional career, I have constantly pushed myself by planning and directing live stages, recently orchestrating an official performance at Hangang Park. The grit and discipline shaped by 15 years of music are the exact same forces that drive me to refine my focus in golf and pedal past exhaustion in cycling—always evolving.</span>
+                    </p>
+                    
+                    <div class="border-l-4 border-orange-500 pl-6 py-4 my-8 bg-gradient-to-r from-orange-950/20 to-transparent rounded-r-xl">
+                        <p class="font-serif italic text-2xl md:text-3xl text-stone-100 font-bold tracking-wide leading-snug text-glow-orange">
+                            "It doesn't get better.<br>&nbsp;You get better."
+                        </p>
+                        <span class="block text-xs font-black uppercase tracking-widest text-orange-400 mt-3 font-sans">— Joan Rivers —</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="lg:col-span-7 space-y-12">
+                
+                <div class="group/pbox overflow-hidden rounded-2xl bg-stone-900 border border-stone-800 transition duration-300 hover:border-orange-500/30 relative aspect-video">
+                    <img src="private_1.jpg" alt="Guitar Performance" onerror="handleImageError(this, 'Acoustic Guitar Session')" class="w-full h-full object-cover transition duration-500" />
+                </div>
+                
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="group/pbox overflow-hidden rounded-2xl bg-stone-900 border border-stone-800 transition duration-300 hover:border-orange-500/30 relative aspect-square">
+                        <img src="private_2.jpg" alt="Golfing" onerror="handleImageError(this, 'Golf Practice')" class="w-full h-full object-cover transition duration-500" />
+                    </div>
+                    <div class="group/pbox overflow-hidden rounded-2xl bg-stone-900 border border-stone-800 transition duration-300 hover:border-orange-500/30 relative aspect-square">
+                        <img src="private_3.jpg" alt="Cycling" onerror="handleImageError(this, 'Cycling Fitness')" class="w-full h-full object-cover transition duration-500" />
+                    </div>
+                </div>
+                
+                <div class="group/pbox overflow-hidden rounded-2xl bg-stone-900 border border-stone-800 transition duration-300 hover:border-orange-500/30 relative aspect-video">
+                    <img src="private_4.jpg" alt="Photography" onerror="handleImageError(this, 'Creative Camera Auditing')" class="w-full h-full object-cover transition duration-500" />
+                </div>
+                
+                <div class="grid grid-cols-3 gap-3">
+                    <script>
+                        const privateIds = ['private_5', 'private_6', 'private_7'];
+                        for(let i=0; i<3; i++) {
+                            document.write(`
+                                <div class="group/psbox overflow-hidden rounded-2xl bg-stone-900 border border-stone-800 transition duration-300 hover:border-orange-500/30 relative aspect-[3/4]">
+                                    <img src="${privateIds[i]}.jpg" alt="Life Activity" onerror="handleImageError(this, '${privateIds[i]}')" class="w-full h-full object-cover transition duration-500">
+                                </div>
+                            `);
+                        }
+                    </script>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="bg-gradient-to-t from-brand-950 to-slate-950 py-24 border-t border-slate-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-3xl mx-auto text-center space-y-8">
+                <div class="inline-flex items-center gap-2 bg-sky-500/10 border border-sky-500/20 rounded-full px-4 py-1 text-sm font-semibold text-sky-400">
+                    <i class="fa-solid fa-comments"></i> Let's Pioneer Together
+                </div>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-white">
+                    <span class="lang-ko">글로벌 비즈니스 성장을 함께 개척합니다</span>
+                    <span class="lang-en">Pioneering Global Business Growth Together</span>
+                </h2>
+                <p class="text-slate-300 text-base sm:text-lg leading-relaxed">
+                    <span class="lang-ko">복잡한 기술 아키텍처를 직관적인 상업적 가치로 치환하여, 글로벌 시장 진입(GTM)의 확실한 돌파구를 만듭니다. 맨땅에서 글로벌 파이프라인 개척하고 탑티어 파트너십을 함께 성사시킬 가치 있는 기회를 기다립니다. 언제든 연결해 주세요.</span>
+                    <span class="lang-en">I turn complex technical architectures into clear commercial value to secure definitive breakthroughs in global Go-To-Market (GTM) strategies. Let's connect to build high-value pipelines and seal top-tier partnerships together.</span>
+                </p>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4">
+                    <button onclick="copyToClipboard('kibz.here@gmail.com')" class="flex items-center justify-between p-5 bg-slate-900 border border-slate-800 rounded-2xl hover:border-sky-500/40 hover:bg-slate-900/80 transition-all text-left w-full">
+                        <div class="flex items-center gap-4">
+                            <div class="h-12 w-12 rounded-xl bg-sky-500/10 border border-sky-500/20 flex items-center justify-center text-sky-400 text-lg">
+                                <i class="fa-regular fa-envelope"></i>
+                            </div>
+                            <div>
+                                <span class="text-xs text-slate-400 block">
+                                    <span class="lang-ko">이메일 주소</span><span class="lang-en">Email Address</span>
+                                </span>
+                                <span class="text-sm sm:text-base font-bold text-white">kibz.here@gmail.com</span>
+                            </div>
+                        </div>
+                        <i class="fa-regular fa-copy text-slate-500 hover:text-sky-400" title="이메일 복사하기"></i>
+                    </button>
+
+                    <a href="tel:010-3351-1995" class="flex items-center justify-between p-5 bg-slate-900 border border-slate-800 rounded-2xl hover:border-sky-500/40 hover:bg-slate-900/80 transition-all text-left">
+                        <div class="flex items-center gap-4">
+                            <div class="h-12 w-12 rounded-xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center text-indigo-400 text-lg">
+                                <i class="fa-solid fa-phone"></i>
+                            </div>
+                            <div>
+                                <span class="text-xs text-slate-400 block">
+                                    <span class="lang-ko">전화번호 연락처</span><span class="lang-en">Phone Number</span>
+                                </span>
+                                <span class="text-sm sm:text-base font-bold text-white">010-3351-1995</span>
+                            </div>
+                        </div>
+                        <i class="fa-solid fa-arrow-up-right-from-square text-slate-500 hover:text-sky-400"></i>
+                    </a>
+                </div>
+
+                <div id="toast" class="hidden fixed bottom-10 left-1/2 transform -translate-x-1/2 px-6 py-3 rounded-xl bg-slate-900 border border-sky-500 text-sky-400 text-sm font-semibold shadow-2xl items-center gap-2 z-[200]">
+                    <i class="fa-solid fa-circle-check"></i> <span id="toast-message">복사되었습니다!</span>
+                </div>
+
+                <p class="text-xs text-slate-500 pt-4 leading-relaxed">
+                    <span class="lang-ko">* 국문 및 영문 공식 이력서(PDF 파일) 다운로드 및 포지션 상세 미팅 문의는 상단 연락 수단을 통하면 즉각 답변을 받아보실 수 있습니다.</span>
+                    <span class="lang-en">* Official PDF resumes (KR/EN) are available upon request. Please contact me via email or phone for detailed position and career matchmaking.</span>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <div id="details-modal" class="hidden fixed inset-0 z-[100] items-center justify-center p-4 sm:p-6 bg-brand-950/80 backdrop-blur-md transition-all duration-300">
+        <div class="bg-slate-900 border border-slate-800 rounded-3xl max-w-5xl w-full h-[90vh] md:h-auto md:max-h-[85vh] overflow-hidden flex flex-col relative shadow-2xl">
+            <button onclick="closeModal()" class="absolute top-4 right-4 z-50 h-10 w-10 rounded-full bg-slate-950/60 border border-slate-800 hover:bg-slate-800 text-slate-300 hover:text-white flex items-center justify-center transition-all">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+            
+            <div class="flex-grow overflow-y-auto grid grid-cols-1 md:grid-cols-12 h-full">
+                <div class="md:col-span-5 relative h-64 md:h-full min-h-[300px] bg-slate-950 overflow-hidden group/modalimg">
+                    <div id="modal-slider-container" class="absolute inset-0 w-full h-full"></div>
+                    <div class="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-slate-900 via-transparent to-transparent pointer-events-none"></div>
+                </div>
+                
+                <div class="md:col-span-7 p-6 sm:p-10 flex flex-col justify-center space-y-6">
+                    <div>
+                        <span class="text-xs font-bold text-sky-400 uppercase tracking-widest block mb-1">
+                            <span class="lang-ko">실무 상세 분석</span>
+                            <span class="lang-en">Operational Deep Dive</span>
+                        </span>
+                        <h3 id="modal-title" class="text-xl sm:text-2xl font-extrabold text-white tracking-tight leading-tight"></h3>
+                        <p id="modal-subtitle" class="text-xs sm:text-sm text-slate-400 mt-2 font-medium"></p>
+                    </div>
+                    
+                    <div id="modal-bullets" class="space-y-4 border-t border-slate-800/80 pt-6"></div>
+                    
+                    <div class="pt-6 border-t border-slate-800/80 flex items-center justify-between">
+                        <span class="text-[11px] text-slate-500">Kibin Kim | Tech Global Business Developer</span>
+                        <button onclick="closeModal()" class="px-5 py-2.5 rounded-xl font-bold bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs transition-all">
+                            <span class="lang-ko">닫기</span><span class="lang-en">Close</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-brand-950 border-t border-slate-900 py-12 text-center text-slate-500 text-xs sm:text-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-3">
+            <p>&copy; 2026 Kibin Kim. All Rights Reserved. Based on Certified PDF Resume Assets.</p>
+            <p class="text-slate-600">Created with professional, adaptive custom single-file layout structure.</p>
+            <div class="border-t border-slate-900/50 pt-6 mt-6 text-stone-500 text-[11px] sm:text-xs leading-relaxed max-w-2xl mx-auto">
+                <p>본 웹페이지에 사용된 모든 이미지는 AI로 생성되지 않은 실제 현장 및 촬영 자산입니다. 모든 사진의 저작권은 김기빈에게 있으며, 무단 도용 및 복제를 금합니다.</p>
+                <p class="mt-1 opacity-80">(All images on this website are authentic and non-AI generated. Copyright © Kibin Kim. All Rights Reserved.)</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Data for dynamic freelance items
+        const freelanceData = [
+            {
+                id: 'freelance_1', date: '2024.10',
+                koT: 'Juno Health (미국) 전문 통역', enT: 'Juno Health (USA) Interpretation',
+                koD: 'KHF 국제 병원의료 산업 박람회 영어 전문 기술 통역 및 비즈니스 바이어 의전 세션 매칭 전담.',
+                enD: 'Technical interpreter and VIP B2B matching coordinator for Juno Health at the K-Hospital Fair (KHF).',
+                label: 'Juno Health'
+            },
+            {
+                id: 'freelance_2', date: '2024.06',
+                koT: 'Ozganics (호주) 통역', enT: 'Ozganics (Australia) Interpretation',
+                koD: 'Seoul Food 참가 호주 친환경 식품 파트너 비즈니스 개발 및 수입 거래선 영어 협의 스태프 전담.',
+                enD: 'Managed business development and import pipeline negotiations for Ozganics at Seoul Food Expo.',
+                label: 'Ozganics'
+            },
+            {
+                id: 'freelance_3', date: '2024.04',
+                koT: 'Dupre Logistics (미국) 전문 의전', enT: 'Dupre Logistics (USA) Protocol',
+                koD: 'Korea MAT 국제물류산업대전 참가 미국 물류 솔루션 파트너 및 VIP 영어 통역 및 비즈니스 매칭 의전 수행.',
+                enD: 'Provided VIP protocol and B2B matching interpretation for Dupre Logistics at Korea MAT.',
+                label: 'Dupre Logistics'
+            },
+            {
+                id: 'freelance_4', date: '2024.04',
+                koT: 'P.S. PACKAGING (인도) 통역', enT: 'P.S. Packaging (India) Interpretation',
+                koD: 'Korea Pack 국제포장기자재전 참가 인도 바이어 및 비즈니스 상담 영문 커뮤니케이션 조율 및 밀착 지원.',
+                enD: 'English communication liaison and dedicated support for Indian buyers at Korea Pack.',
+                label: 'PS Packaging'
+            },
+            {
+                id: 'freelance_5', date: '2021.10',
+                koT: 'UN 기념의 날 영미권 VIP 영어 의전', enT: 'UN Memorial Day VIP Protocol',
+                koD: '공식 행사 영미권 핵심 군사 및 외교 VIP 밀착 에스코트, 의전 시나리오 기반 맞춤형 원어 응대 완료.',
+                enD: 'Close-escort VIP protocol and scenario-driven English responses for military and diplomatic delegates.',
+                label: 'UN Day'
+            },
+            {
+                id: 'freelance_6', date: '2020.10',
+                koT: '세계해양포럼 기조연설 영어 첨삭', enT: 'World Ocean Forum Speech Editing',
+                koD: '제14회 세계해양포럼(WOF) 참가 글로벌 초청 연사 연설 원고 영어 검수, 첨삭 수정 및 라이브 싱크 통역 업무 지원.',
+                enD: 'Proofread English keynote speeches and supported live synchronous interpretation at the 14th World Ocean Forum.',
+                label: 'Ocean Forum'
+            },
+            {
+                id: 'freelance_7', date: '2019.11',
+                koT: '한아세안 특별정상회의 외교관 의전', enT: 'ASEAN-ROK Summit Diplomatic Protocol',
+                koD: '세네갈 고위급 외교 사절단 공식 안내 데스크 총괄 및 메인 다자간 콘퍼런스 통역 스태프 수행.',
+                enD: 'Managed the reception desk for Senegal\'s diplomatic delegation and served as a conference interpreter.',
+                label: 'ASEAN Summit'
+            },
+            {
+                id: 'freelance_8', date: '2019.10 - 2022.01',
+                koT: 'K-MOOC 교육 영상 영어 자막 번역', enT: 'K-MOOC Academic Subtitling',
+                koD: '(주)보이스루 프리랜서 번역가 제휴, 핵심 교육 강좌 및 자막 영문 로컬라이징 번역 100건 이상 진행.',
+                enD: 'Delivered English localization and subtitling for over 100 academic lectures as a freelance translator.',
+                label: 'K-MOOC'
+            },
+            {
+                id: 'freelance_9', date: '2016.03 - 2022.02',
+                koT: '대학 영자신문사 부장기자 활동', enT: 'English Newspaper Editor-in-Chief',
+                koD: '글로벌 시사 이슈 기사 영문 기획 작성, 발행 프로세스 관리 및 최종 인쇄 전 문법 단어 검수 및 감수 총괄.',
+                enD: 'Authored English articles, managed publication processes, and oversaw final proofreading as Editor-in-Chief.',
+                label: 'Newspaper Editor'
+            }
+        ];
+
+        const freelanceGridEl = document.getElementById('freelance-grid');
+        if(freelanceGridEl) {
+            let htmlContent = '';
+            freelanceData.forEach(item => {
+                htmlContent += `
+                    <div class="bg-slate-900 border border-slate-800 p-5 rounded-xl hover:border-slate-700 transition flex gap-4 items-start group/card">
+                        <div class="w-20 h-20 bg-slate-950 rounded-lg overflow-hidden border border-slate-800 shrink-0 relative">
+                            <img src="${item.id}.jpg" alt="${item.label}" onerror="handleImageError(this, '${item.label}')" class="w-full h-full object-cover">
+                        </div>
+                        <div class="flex-grow min-w-0">
+                            <span class="text-xs text-sky-400 font-mono block mb-1">${item.date}</span>
+                            <h4 class="text-sm font-bold text-white mb-2 truncate">
+                                <span class="lang-ko">${item.koT}</span><span class="lang-en">${item.enT}</span>
+                            </h4>
+                            <p class="text-[11px] text-slate-400 leading-relaxed line-clamp-3">
+                                <span class="lang-ko">${item.koD}</span>
+                                <span class="lang-en">${item.enD}</span>
+                            </p>
+                        </div>
+                    </div>
+                `;
+            });
+            freelanceGridEl.innerHTML = htmlContent;
+        }
+
+        // Modal Data
+        const modalData = {
+            1: {
+                titleKo: "Pre-Qualified Outbound Funnel Strategy",
+                titleEn: "Pre-Qualified Outbound Funnel Strategy",
+                subtitleKo: "글로벌 전시회(CES, MWC, GITEX, ATXSG) 기반 아웃바운드 세일즈 파이프라인 개척",
+                subtitleEn: "Outbound Sales Pipeline Development via Global Tech Exhibitions",
+                bulletsKo: [
+                    "<strong>Multi-Channel Outbound:</strong> 링크드인 아웃바운드, 사전 콜드메일, 온라인 피칭을 유기적으로 결합하여 글로벌 테크 전시회 인프라를 활용한 입체적 리드 제너레이션 스킬 보유.",
+                    "<strong>B2B Discovery & Qualification:</strong> 복잡한 기술 스펙을 배제하고 직관적인 '비즈니스 가치(ROI)'로 바이어의 페인포인트를 선제 타격. 전시회 현장에서 단순 참관객과 실제 엔터프라이즈 수요를 즉각 스크리닝하여 800명 이상의 고부가가치 잠재 바이어 및 파트너(Walmart, Sam's Club, Nestle 등) 파이프라인 독자적 구축 및 선별."
+                ],
+                bulletsEn: [
+                    "<strong>Multi-Channel Outbound:</strong> Organically combining LinkedIn outreach, targeted cold emailing, and virtual pitching to drive multidimensional lead generation utilizing global exhibition frameworks.",
+                    "<strong>B2B Discovery & Qualification:</strong> Addressing buyers' pain points with clear business value (ROI) rather than complex tech jargon. Screened out casual visitors to identify high-potential enterprise targets, independently building a pipeline of 800+ qualified B2B buyers & partners (Walmart, Sam's Club, Nestle, etc.)."
+                ],
+                images: [
+                    { file: 'modal1_1.jpg', label: '1. MWC 전시 아웃바운드' },
+                    { file: 'modal1_2.jpg', label: '2. 다스버스 두바이 파이프라인' },
+                    { file: 'modal1_3.jpg', label: '3. ATxSG 현장 세일즈' }
+                ]
+            },
+            2: {
+                titleKo: "Field Audit & Data-Driven 'Value Selling'",
+                titleEn: "Field Audit & Data-Driven 'Value Selling'",
+                subtitleKo: "현장 인프라 실사 기반 대기업(Kenvue, 삼성SDS) PoC 제안 구조화",
+                subtitleEn: "Enterprise PoC Proposals Built on On-site Infrastructure Auditing",
+                bulletsKo: [
+                    "<strong>On-Site Operational Auditing:</strong> 단순 데이터 취합을 넘어 3,000평 규모 대형 물류센터 현장을 직접 방문하여 MHE(물류장비) 운영 동선, 창고 인프라 사이즈, 센서 위치 레이아웃 실사 직접 수행.",
+                    "<strong>Bottleneck Quantifying:</strong> '바코드 수동 스캔으로 인한 인벤토리당 1~2분의 리드타임 지체'라는 현장 실무의 핵심 병목 구간(Pain Point)을 날카롭게 포착. 자사 솔루션의 배치 유효성을 데이터 지표로 치환하여 글로벌 임원진 대상의 최종 제안서 가치 자산화 기여."
+                ],
+                bulletsEn: [
+                    "<strong>On-Site Operational Auditing:</strong> Personally audited a 10,000 sqm (approx. 107,000 sq ft) logistics center to map out MHE workflows, warehouse space dimensions, and sensor placement layouts.",
+                    "<strong>Bottleneck Quantifying:</strong> Pinpointed critical pain points like the '1-2 minute lead time delay per inventory unit due to manual barcode scanning.' Transformed solution efficacy into quantifiable data, reinforcing proposal value for global executives."
+                ],
+                images: [
+                    { file: 'modal2_1.jpg', label: '1. SCM 원천 로그 데이터' },
+                    { file: 'modal2_2.jpg', label: '2. 물류 창고 현장 실사' },
+                    { file: 'modal2_3.jpg', label: '3. 재고실사 자율주행 로봇' }
+                ]
+            },
+            3: {
+                titleKo: "High-Stakes Institutional Pitching & GTM Objection Handling",
+                titleEn: "High-Stakes Pitching & GTM Objection Handling",
+                subtitleKo: "규제 및 대외적 허들을 돌파하는 전략적 GTM 세일즈",
+                subtitleEn: "Strategic GTM Sales Overcoming Regulatory & Macroeconomic Obstacles",
+                bulletsKo: [
+                    "<strong>Institutional Access & Trust:</strong> 주한미군 캠프 험프리스 미 육군 고위급 VIP 대상 기술 협상 및 부대 진입 장벽 조율 프로세스를 전담 리딩하며 글로벌 신뢰도 자산 확보.",
+                    "<strong>Global Deal Closing & GTM:</strong> 글로벌 브랜드 라이센싱 계약 담당자 사인을 이끌어내며 파트너십 딜을 최종 클로징하였고, CES 테크 피칭 이후 Sam's Club 및 Walmart 대상의 긴밀한 아웃바운드 영업(KOM) 파이프라인까지 연속성 있게 연계 확장."
+                ],
+                bulletsEn: [
+                    "<strong>Institutional Access & Trust:</strong> Led high-stakes tech negotiations and access coordination with US Army VIPs at Camp Humphreys, securing institutional credibility and public reference.",
+                    "<strong>Global Deal Closing & GTM:</strong> Successfully closed strategic partnership deals by securing key executive signatures on global brand licensing agreements. Seamlessly expanded post-CES tech pitching into tight outbound sales (KOM) pipelines targeting Sam's Club and Walmart."
+                ],
+                images: [
+                    { file: 'modal3_1.jpg', label: '1. 미군 VIP 발표' },
+                    { file: 'modal3_2.jpg', label: '2. CES 글로벌 피칭' },
+                    { file: 'modal3_3.jpg', label: '3. 지스타 IR 결선' }
+                ]
+            }
+        };
+
+        let activeSliderInterval = null;
+
+        function openModal(id) {
+            const data = modalData[id];
+            if (!data) return;
+
+            document.getElementById('modal-title').innerHTML = `
+                <span class="lang-ko">${data.titleKo}</span>
+                <span class="lang-en">${data.titleEn}</span>
+            `;
+            document.getElementById('modal-subtitle').innerHTML = `
+                <span class="lang-ko">${data.subtitleKo}</span>
+                <span class="lang-en">${data.subtitleEn}</span>
+            `;
+
+            let bulletsHtml = '<ul class="space-y-4">';
+            data.bulletsKo.forEach(bullet => {
+                bulletsHtml += `
+                    <li class="flex items-start gap-3 lang-ko">
+                        <i class="fa-solid fa-circle-check text-sky-400 mt-1 shrink-0 text-base"></i>
+                        <span class="text-slate-300 text-sm sm:text-base leading-relaxed">${bullet}</span>
+                    </li>
+                `;
+            });
+            data.bulletsEn.forEach(bullet => {
+                bulletsHtml += `
+                    <li class="flex items-start gap-3 lang-en">
+                        <i class="fa-solid fa-circle-check text-sky-400 mt-1 shrink-0 text-base"></i>
+                        <span class="text-slate-300 text-sm sm:text-base leading-relaxed">${bullet}</span>
+                    </li>
+                `;
+            });
+            bulletsHtml += '</ul>';
+            document.getElementById('modal-bullets').innerHTML = bulletsHtml;
+
+            let slidesHtml = '';
+            data.images.forEach((imgObj, idx) => {
+                const animClass = `kb-anim-${idx % 4}`; 
+                const opacityClass = idx === 0 ? 'opacity-100' : 'opacity-0';
+                
+                slidesHtml += `
+                    <img class="modal-slide absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${opacityClass} ${animClass}"
+                         src="${imgObj.file}"
+                         alt="${imgObj.label}"
+                         onerror="handleImageError(this, '${imgObj.label}')">
+                `;
+            });
+            document.getElementById('modal-slider-container').innerHTML = slidesHtml;
+
+            const modal = document.getElementById('details-modal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            document.body.classList.add('overflow-hidden');
+
+            startModalSlider();
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('details-modal');
+            modal.classList.remove('flex');
+            modal.classList.add('hidden');
+            document.body.classList.remove('overflow-hidden');
+
+            if (activeSliderInterval) {
+                clearInterval(activeSliderInterval);
+                activeSliderInterval = null;
+            }
+        }
+
+        function startModalSlider() {
+            if (activeSliderInterval) clearInterval(activeSliderInterval);
+            const slides = document.querySelectorAll('.modal-slide');
+            if (slides.length <= 1) return;
+
+            let currentSlide = 0;
+            activeSliderInterval = setInterval(() => {
+                slides[currentSlide].classList.replace('opacity-100', 'opacity-0');
+                currentSlide = (currentSlide + 1) % slides.length;
+                slides[currentSlide].classList.replace('opacity-0', 'opacity-100');
+            }, 6000);
+        }
+
+        window.onclick = function(event) {
+            const modal = document.getElementById('details-modal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        };
+
+        window.onkeydown = function(event) {
+            if (event.key === "Escape") {
+                closeModal();
+            }
+        };
+
+        // Offline Safe Language Toggle Script
+        function setLanguage(lang) {
+            const body = document.body;
+            const btnKo = document.getElementById('btn-ko');
+            const btnEn = document.getElementById('btn-en');
+            const btnKoMob = document.getElementById('btn-ko-mob');
+            const btnEnMob = document.getElementById('btn-en-mob');
+
+            const activeClasses = ['bg-sky-500', 'text-brand-950'];
+            const inactiveClasses = ['text-slate-400', 'hover:text-white'];
+
+            if (lang === 'ko') {
+                body.classList.remove('lang-en');
+                body.classList.add('lang-ko');
+                
+                if(btnKo) { btnKo.classList.add(...activeClasses); btnKo.classList.remove(...inactiveClasses); }
+                if(btnKoMob) { btnKoMob.classList.add(...activeClasses); btnKoMob.classList.remove(...inactiveClasses); }
+                
+                if(btnEn) { btnEn.classList.remove(...activeClasses); btnEn.classList.add(...inactiveClasses); }
+                if(btnEnMob) { btnEnMob.classList.remove(...activeClasses); btnEnMob.classList.add(...inactiveClasses); }
+                
+                showToast("한글 버전으로 전환되었습니다.");
+            } else {
+                body.classList.remove('lang-ko');
+                body.classList.add('lang-en');
+                
+                if(btnEn) { btnEn.classList.add(...activeClasses); btnEn.classList.remove(...inactiveClasses); }
+                if(btnEnMob) { btnEnMob.classList.add(...activeClasses); btnEnMob.classList.remove(...inactiveClasses); }
+                
+                if(btnKo) { btnKo.classList.remove(...activeClasses); btnKo.classList.add(...inactiveClasses); }
+                if(btnKoMob) { btnKoMob.classList.remove(...activeClasses); btnKoMob.classList.add(...inactiveClasses); }
+                
+                showToast("Switched to English version.");
+            }
+        }
+
+        // Mobile Menu Toggle
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const icon = document.getElementById('menu-icon');
+            
+            if (menu.classList.contains('hidden')) {
+                menu.classList.remove('hidden');
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-xmark');
+            } else {
+                menu.classList.add('hidden');
+                icon.classList.remove('fa-xmark');
+                icon.classList.add('fa-bars');
+            }
+        }
+
+        // Show toast helper alert
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            const toastMsg = document.getElementById('toast-message');
+            if (toast && toastMsg) {
+                toastMsg.innerText = message;
+                toast.classList.remove('hidden');
+                toast.classList.add('flex');
+                setTimeout(() => {
+                    toast.classList.add('hidden');
+                    toast.classList.remove('flex');
+                }, 2500);
+            }
+        }
+
+        // Copy to clipboard
+        function copyToClipboard(text) {
+            const dummy = document.createElement("textarea");
+            document.body.appendChild(dummy);
+            dummy.value = text;
+            dummy.select();
+            document.execCommand("copy");
+            document.body.removeChild(dummy);
+
+            const isEng = document.body.classList.contains('lang-en');
+            showToast(isEng ? "Email copied to clipboard!" : "이메일 주소가 클립보드에 복사되었습니다!");
+        }
+    </script>
+</body>
+</html>
