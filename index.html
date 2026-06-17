@@ -82,6 +82,18 @@
         .kb-anim-1 { animation: kb-zoom-in 7s ease-in-out infinite alternate; }
         .kb-anim-2 { animation: kb-pan-left 7s ease-in-out infinite alternate; }
         .kb-anim-3 { animation: kb-zoom-out 7s ease-in-out infinite alternate; }
+
+        /* Prevent image highlighting and dragging */
+        img {
+            -webkit-user-drag: none;
+            -khtml-user-drag: none;
+            -moz-user-drag: none;
+            -o-user-drag: none;
+            user-select: none;
+            -moz-user-select: none;
+            -webkit-user-select: none;
+            -ms-user-select: none;
+        }
     </style>
 
     <script>
@@ -381,7 +393,7 @@
                             <span class="lang-en">Developer-Collaborative PoC Simulations & Data Proposals</span>
                         </h3>
                         <p class="text-sm text-slate-400 mt-2 max-w-4xl leading-relaxed">
-                            <span class="lang-ko">현장에서 직접 수집한 원천 데이터를 사내 개발팀과 긴밀히 분석·시뮬레이션하여 객관적인 기대 효과(ROI)를 도출하고, 이를 바탕으로 글로벌 임원진 대상의 기술 제안을 논리적으로 지원한 협업의 기록입니다.</span>
+                            <span class="lang-ko">현장에서 직접 수집한 원천 데이터를 사내 개발팀과 긴밀히 분석·시뮬레이션하여 객관적인 기대 효과(ROI) 도출하고, 이를 바탕으로 글로벌 임원진 대상의 기술 제안을 논리적으로 지원한 협업의 기록입니다.</span>
                             <span class="lang-en">A collaborative record of translating on-site raw data into objective simulated ROI metrics alongside internal developers, logically supporting technical proposals for global executives.</span>
                         </p>
                     </div>
@@ -1396,6 +1408,13 @@
             const isEng = document.body.classList.contains('lang-en');
             showToast(isEng ? "Email copied to clipboard!" : "이메일 주소가 클립보드에 복사되었습니다!");
         }
+
+        // Prevent Right-Click context menu on all images globally
+        document.addEventListener('contextmenu', function(e) {
+            if (e.target.tagName === 'IMG') {
+                e.preventDefault();
+            }
+        });
     </script>
 </body>
 </html>
